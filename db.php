@@ -1,2 +1,2 @@
-<? $con = mysqli_connect("localhost","root","");
- mysqli_select_db($con,"gruuve"); ?>
+<? $con = mysqli_connect("","","");
+ mysqli_select_db($con,""); ?>
