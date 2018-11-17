@@ -74,15 +74,25 @@
         echo "<script>alert('Either Name or Email field is empty')</script>";
       }
       else {
+     
+     //connections
         $con = mysqli_connect("localhost","root","");
         mysqli_select_db($con,"gruuve");
 
+        $qw = "select * from users where email=$email";
+        $qw1=mysqli_query($con, $qw);
+        if(mysqli_num_rows($qw1)>0){
+          echo "<script>alert('User Already Exist')</script>";
+
+        }
+        else {
         $insert_query = "insert into users (name, email, password) values ('$name','$email','$pass1')";
         $res=mysqli_query($con, $insert_query);
         echo "<script>window.location.href = \"registered.html\";</script>";
       }
+      }
   
-    
+      mysqli_close($con);
     }
     
     ?>
