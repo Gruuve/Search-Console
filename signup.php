@@ -79,9 +79,11 @@
         $con = mysqli_connect("localhost","root","");
         mysqli_select_db($con,"gruuve");
 
-        $qw = "select * from users where email=$email";
+        $qw = "select * from users where email='$email'";
         $qw1=mysqli_query($con, $qw);
+
         if(mysqli_num_rows($qw1)>0){
+
           echo "<script>alert('User Already Exist')</script>";
 
         }

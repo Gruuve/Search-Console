@@ -58,3 +58,47 @@
       
     </body>
     </html>
+
+
+    <?php 
+    error_reporting(0);
+
+    if(isset($_POST['submit'])){
+    
+        $email = $_POST['email'];
+        $pass = $_POST['pass'];
+
+        if ($email=='' || $pass==''){
+            echo "<script>alert('Email or Password field is empty')</script>";
+        }
+        else {
+           //connections
+           
+            $con = mysqli_connect("localhost","root","");
+            mysqli_select_db($con,"gruuve");
+
+            $insert_query = "select * from users where email='$email' and password='$pass'";
+            $res=mysqli_query($con, $insert_query);
+
+            if(mysqli_num_rows($res)>0){ 
+
+                $row=mysqli_fetch_assoc($res);
+                $id = $row[id];
+                echo "<script>window.location.href = \"dashboard.php?user_id=$id\";</script>";
+
+
+            }
+            else {
+                echo "<script>alert('Wrong Email or Password')</script>";
+            }
+
+
+        }
+    
+    }
+    
+
+    mysqli_close($con);
+
+    ?>
+    
