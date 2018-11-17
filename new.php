@@ -30,7 +30,7 @@
                 Your dream to make your website show on the webpage is just few steps apart.<br>
                 Please fill up the necessary details of your website to complete the process.<br>
             </center>
-            
+
 <!--form start-->
                 <form method="POST" action="new.php">
                     <div class="form-group">
@@ -55,6 +55,7 @@
 <!--form end-->
 
         </div>
+        <br><br><br><br>
 
         </body>
         </html>
