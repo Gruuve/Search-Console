@@ -1,14 +1,8 @@
-<?php  
+<?php 
 
-$user_id = $_GET['user_id'];
-include("db.php");
-$qw = "select * from users where id=$user_id";
-$res = mysqli_query($con,$qw);
-$row = mysqli_fetch_assoc($res);
-$main_name = $row['name'];
+$user_id = $_GET['user_id']
 
 ?>
-
 
 <!DOCTYPE html>
   <html>
@@ -32,11 +26,7 @@ $main_name = $row['name'];
         <nav class="navbar navbar-light bg-light">
             <span class="navbar-brand mb-0 h1"><font class="temp">Gruuve </font><font class="subtag">Search Console : Add Website</font></span>
         </nav>
-        <div class="jumbotron">
-            <div class="container">
-                <center><h1 class="display-4"><font class="temp2">Welcome, </font><font class="subtag2"><?php echo "$main_name"; ?></font></h1></center>
-            </div>
-        </div>
+        <br><br>
         <div class="container subtag3">
             <center>
                 Your dream to make your website show on the webpage is just few steps apart.<br>
@@ -44,21 +34,22 @@ $main_name = $row['name'];
             </center>
 
 <!--form start-->
-                <form method="POST" action="new.php">
+                <form method="POST" action="process.php">
+                <input type="text" name="user_id" value="<?php echo "$user_id"; ?>" hidden>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Result header</label>
                       <input type="text" class="form-control" placeholder="Result header" name="header">
                     </div>
                     <div class="form-group">
-                            <label for="exampleInputPassword1">Result content</label>
+                            <label for="exampleInputEmail1">Result content</label>
                             <input type="text" class="form-control" placeholder="Result content" name="content">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">URL/Link</label>
+                        <label for="exampleInputEmail1">URL/Link</label>
                         <input type="text" class="form-control" placeholder="URL here" name="link">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Keywords</label>
+                        <label for="exampleInputEmail1">Keywords</label>
                         <input type="text" class="form-control" placeholder="Keywords" name="keywords">
                     </div>
                     <br>
@@ -73,31 +64,10 @@ $main_name = $row['name'];
         </html>
 
 
-        <?php 
-        
-        if(isset($_POST['submit'])){
-
-            
-            $header = $_POST['header'];
-            $content = $_POST['content'];
-            $link = $_POST['link'];
-            $keywords = $_POST['keywords'];
-
-            if ($header=='' || $content=='' || $link=='' || $keywords==''){
-                echo "<script>alert('Please enter all the fields');
-                window.location.href = \"new.php?user_id=$user_id\";</script>";
-            }
-            else {
-                include("db.php");
-                $insert_query = "insert into websites (id, header, link, content, keywords) values ('$user_id','$header','$link','$content','$keywords')";
-                $res=mysqli_query($con, $insert_query);
-                echo "<script>window.location.href = \"dashboard.php?user_id=$user_id\";</script>";
-            }
-
-
-        }
+    
 
         
+
         ?>
 
 
