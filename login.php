@@ -74,8 +74,7 @@
         else {
            //connections
            
-            $con = mysqli_connect("localhost","root","");
-            mysqli_select_db($con,"gruuve");
+           include("db.php");
 
             $insert_query = "select * from users where email='$email' and password='$pass'";
             $res=mysqli_query($con, $insert_query);

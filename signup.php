@@ -62,6 +62,7 @@
     
     if(isset($_POST['submit'])){
     
+      
       $email = $_POST['email'];
       $name = $_POST['name'];
       $pass1 = $_POST['pass1'];
@@ -76,9 +77,7 @@
       else {
      
      //connections
-        $con = mysqli_connect("localhost","root","");
-        mysqli_select_db($con,"gruuve");
-
+        include("db.php");
         $qw = "select * from users where email='$email'";
         $qw1=mysqli_query($con, $qw);
 
