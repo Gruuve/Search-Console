@@ -82,7 +82,7 @@
             if(mysqli_num_rows($res)>0){ 
 
                 $row=mysqli_fetch_assoc($res);
-                $id = $row[id];
+                $id = $row['id'];
                 echo "<script>window.location.href = \"dashboard.php?user_id=$id\";</script>";
 
 

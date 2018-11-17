@@ -1,3 +1,15 @@
+<?php  
+
+$user_id = $_GET['user_id'];
+include("db.php");
+$qw = "select * from users where id=$user_id";
+$res = mysqli_query($con,$qw);
+$row = mysqli_fetch_assoc($res);
+$main_name = $row['name'];
+
+?>
+
+
 <!DOCTYPE html>
   <html>
     <head>
@@ -22,7 +34,7 @@
         </nav>
         <div class="jumbotron">
             <div class="container">
-                <center><h1 class="display-4"><font class="temp2">Welcome, </font><font class="subtag2">Subhajit Mondal</font></h1></center>
+                <center><h1 class="display-4"><font class="temp2">Welcome, </font><font class="subtag2"><?php echo "$main_name"; ?></font></h1></center>
             </div>
         </div>
         <div class="container subtag3">
@@ -59,3 +71,34 @@
 
         </body>
         </html>
+
+
+        <?php 
+        
+        if(isset($_POST['submit'])){
+
+            
+            $header = $_POST['header'];
+            $content = $_POST['content'];
+            $link = $_POST['link'];
+            $keywords = $_POST['keywords'];
+
+            if ($header=='' || $content=='' || $link=='' || $keywords==''){
+                echo "<script>alert('Please enter all the fields');
+                window.location.href = \"new.php?user_id=$user_id\";</script>";
+            }
+            else {
+                include("db.php");
+                $insert_query = "insert into websites (id, header, link, content, keywords) values ('$user_id','$header','$link','$content','$keywords')";
+                $res=mysqli_query($con, $insert_query);
+                echo "<script>window.location.href = \"dashboard.php?user_id=$user_id\";</script>";
+            }
+
+
+        }
+
+        
+        ?>
+
+
+        
